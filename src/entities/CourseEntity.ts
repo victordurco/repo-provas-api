@@ -14,6 +14,9 @@ export default class CourseEntity {
   @Column()
   name: string;
 
+  @Column({name: 'period_id'})
+  periodId: number;
+
   @OneToOne(() => PeriodEntity, { eager: true })
   @JoinColumn({ name: 'period_id'})
   period: PeriodEntity;
