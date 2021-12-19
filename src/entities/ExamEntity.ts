@@ -17,6 +17,15 @@ export default class Exams {
   @Column()
   name: string; 
 
+  @Column({name: 'category_id'})
+  categoryId: number;
+
+  @Column({name: 'teacher_id'})
+  teacherId: number;
+
+  @Column({name: 'course_id'})
+  courseId: number;
+    
   @OneToOne(() => ExamCategoryEntity, { eager: true })
   @JoinColumn({ name: 'category_id'})
   category: ExamCategoryEntity;
