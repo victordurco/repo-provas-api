@@ -4,6 +4,7 @@ import cors from "cors";
 
 import connectDatabase from "./database";
 import serverMiddlewareError from './middlewares/serverMiddlewareErro';
+import examRouter from './routers/examRouter';
 
 export async function init () {
   await connectDatabase();
@@ -17,7 +18,7 @@ app.get("/status", (req: Request, res: Response) => {
     res.sendStatus(200);
 });
 
-
+app.use('/exam', examRouter);
 
 app.use(serverMiddlewareError);
 
