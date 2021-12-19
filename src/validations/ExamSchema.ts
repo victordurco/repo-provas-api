@@ -9,7 +9,7 @@ const newExamSchema = joi.object({
   url: joi.string().required().pattern(URL_PATTERN),
   name: joi.string().min(6).max(6).required().pattern(NAME_PATTERN),
   teacherId: joi.number().min(1).required(),
-  categoryId: joi.number().min(1).required(),
+  categoryId: joi.number().min(1).max(5).required(),
   courseId: joi.number().min(1).required(),
 });
 

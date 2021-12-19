@@ -28,7 +28,7 @@ export default class CourseEntity {
   @JoinTable({
     name: 'classes',
     joinColumn: {
-      name: 'course_id',
+      name: 'courses_id',
       referencedColumnName: 'id'
     },
     inverseJoinColumn: {
