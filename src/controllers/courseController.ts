@@ -3,7 +3,8 @@ import { Request, Response, NextFunction } from "express";
 import * as courseService from '../services/courseService';
 
 export async function getCourseTeachers (req: Request, res: Response, next: NextFunction): Promise<any>{
-  const { id } = req.body;
+  const { courseId } = req.params;
+  const id = Number(courseId);
   if (!id || id < 1 || typeof id !== 'number') return res.sendStatus(400);
 
   try {
