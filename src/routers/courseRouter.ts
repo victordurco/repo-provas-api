@@ -7,4 +7,6 @@ router.get('/:courseId/teachers', courseController.getCourseTeachers);
 
 router.get('', courseController.getCourses);
 
+router.get('/exams', courseController.getCoursesWithExams);
+
 export default router;

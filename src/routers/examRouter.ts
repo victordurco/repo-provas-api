@@ -8,4 +8,6 @@ router.post('', examController.createExam);
 
 router.get('/teacher/:teacherId', examController.getExamsByTeacherId);
 
+router.get('/course/:courseId', examController.getExamsByCourseId);
+
 export default router;

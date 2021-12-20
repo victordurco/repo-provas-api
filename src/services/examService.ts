@@ -36,3 +36,8 @@ export async function getExamsByTeacherId(id: number): Promise<any> {
   return result; 
 }
 
+export async function getExamsByCourseId(id: number): Promise<any> {
+  const result = await getRepository(ExamEntity).find({courseId: id});
+  return result; 
+}
+
