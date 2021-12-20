@@ -14,4 +14,5 @@ export default class TeacherEntity {
 
   @OneToMany(() => ExamEntity, exam => exam.teacher)
   exams: ExamEntity;
+
 }
