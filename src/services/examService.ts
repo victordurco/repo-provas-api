@@ -4,7 +4,7 @@ import * as teacherService from './teacherService';
 import * as courseService from './courseService';
 import * as examCategoryService from './examCategoryService';
 
-import { Exam } from '../controllers/examController';
+import { Exam } from '../protocols/Exam';
 import { InvalidCourse, InvalidTeacher, InvalidCategory, IncompatibleCourseAndTeacher } from '../errors/examErrors';
 import  ExamEntity  from '../entities/ExamEntity';
 
@@ -30,3 +30,20 @@ export async function createExam(exam: Exam): Promise<any> {
   await getRepository(ExamEntity).save(newExam);
   return newExam; 
 }
+
+export async function getExamsByTeacherId(id: number): Promise<Exam[]> {
+  const teacher = await teacherService.getById(id);
+  if (!teacher) throw new InvalidTeacher();
+    
+  const result = await getRepository(ExamEntity).find({teacherId: id});
+  return result; 
+}
+
+export async function getExamsByCourseId(id: number): Promise<Exam[]> {
+  const course = await courseService.getById(id);
+  if (!course) throw new InvalidCourse();
+  
+  const result = await getRepository(ExamEntity).find({courseId: id});
+  return result; 
+}
+

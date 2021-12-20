@@ -36,3 +36,19 @@ describe("POST /exam", () => {
         expect(result.status).toEqual(400);
     });
 });
+
+describe("GET /exam/teacher/:teacherId",  () => {
+    test("returns 200 with array of exams", async () => {
+        const result = await supertest(app).get("/exam/teacher/1");
+        expect(result.status).toEqual(200);
+        expect(Array.isArray(result.body)).toBe(true);
+    });
+});
+
+describe("GET /exam/course/:courseId",  () => {
+    test("returns 200 with array of exams", async () => {
+        const result = await supertest(app).get("/exam/course/1");
+        expect(result.status).toEqual(200);
+        expect(Array.isArray(result.body)).toBe(true);
+    });
+});
