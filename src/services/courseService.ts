@@ -1,9 +1,12 @@
 import { getRepository } from 'typeorm';
 
 import CourseEntity from '../entities/CourseEntity';
+import { InvalidCourse } from '../errors/examErrors';
 
 export async function getById(id: number): Promise<any> {
+    const course = await getRepository(CourseEntity).find({ id: id });
 
-    const result = await getRepository(CourseEntity).find({ id: id });
-    return result[0];
+    if (!course[0]) throw new InvalidCourse();
+    
+    return course[0];
 }
