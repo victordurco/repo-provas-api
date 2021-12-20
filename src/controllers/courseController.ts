@@ -15,3 +15,12 @@ export async function getCourseTeachers (req: Request, res: Response, next: Next
     next(error);
   }
 };
+
+export async function getCourses(req: Request, res: Response, next: NextFunction): Promise<any>{
+  try {
+    const courses =  await courseService.getAll();
+    return res.status(200).send(courses);
+  } catch (error) {
+    next(error);
+  }
+};

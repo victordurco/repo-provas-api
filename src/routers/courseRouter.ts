@@ -5,4 +5,6 @@ const router = Router();
 
 router.get('/:courseId/teachers', courseController.getCourseTeachers);
 
+router.get('', courseController.getCourses);
+
 export default router;

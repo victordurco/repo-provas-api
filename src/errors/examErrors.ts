@@ -20,9 +20,18 @@ class InvalidCategory extends Error {
   }
 }
 
+class IncompatibleCourseAndTeacher extends Error {
+  constructor() {
+    super('Professor e disciplina não compatíveis');
+    this.name = 'IncompatibleCourseAndTeacher';
+  }
+}
+
+
 
 export { 
     InvalidTeacher, 
     InvalidCourse, 
-    InvalidCategory
+    InvalidCategory,
+    IncompatibleCourseAndTeacher
 }
