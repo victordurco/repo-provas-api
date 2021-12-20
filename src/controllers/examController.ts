@@ -38,6 +38,7 @@ export async function getExamsByTeacherId (req: Request, res: Response, next: Ne
     const exams = await examService.getExamsByTeacherId(id);
     return res.status(200).send(exams);
   } catch (error) {
+    if (error.name === 'InvalidTeacher') return res.status(404).send(error.message);
     next(error);
   }
 };
@@ -51,6 +52,7 @@ export async function getExamsByCourseId (req: Request, res: Response, next: Nex
     const exams = await examService.getExamsByTeacherId(id);
     return res.status(200).send(exams);
   } catch (error) {
+    if (error.name === 'InvalidCourse') return res.status(404).send(error.message);
     next(error);
   }
 };

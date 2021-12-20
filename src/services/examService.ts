@@ -32,11 +32,17 @@ export async function createExam(exam: Exam): Promise<any> {
 }
 
 export async function getExamsByTeacherId(id: number): Promise<any> {
+  const teacher = await teacherService.getById(id);
+  if (!teacher) throw new InvalidTeacher();
+    
   const result = await getRepository(ExamEntity).find({teacherId: id});
   return result; 
 }
 
 export async function getExamsByCourseId(id: number): Promise<any> {
+  const course = await courseService.getById(id);
+  if (!course) throw new InvalidCourse();
+  
   const result = await getRepository(ExamEntity).find({courseId: id});
   return result; 
 }
