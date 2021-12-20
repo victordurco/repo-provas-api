@@ -28,3 +28,17 @@ export async function createExam (req: Request, res: Response, next: NextFunctio
     next(error);
   }
 };
+
+export async function getExamsByTeacherId (req: Request, res: Response, next: NextFunction): Promise<any>{
+  const { teacherId } = req.params;
+  const id = Number(teacherId);
+  if (!id || id < 1 || typeof id !== 'number') return res.sendStatus(400);
+
+  try {
+    const exams = await examService.getExamsByTeacherId(id);
+    return res.status(200).send(exams);
+  } catch (error) {
+    next(error);
+  }
+};
+

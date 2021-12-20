@@ -30,3 +30,9 @@ export async function createExam(exam: Exam): Promise<any> {
   await getRepository(ExamEntity).save(newExam);
   return newExam; 
 }
+
+export async function getExamsByTeacherId(id: number): Promise<any> {
+  const result = await getRepository(ExamEntity).find({teacherId: id});
+  return result; 
+}
+
