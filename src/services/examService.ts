@@ -4,7 +4,7 @@ import * as teacherService from './teacherService';
 import * as courseService from './courseService';
 import * as examCategoryService from './examCategoryService';
 
-import { Exam } from '../controllers/examController';
+import { Exam } from '../protocols/Exam';
 import { InvalidCourse, InvalidTeacher, InvalidCategory, IncompatibleCourseAndTeacher } from '../errors/examErrors';
 import  ExamEntity  from '../entities/ExamEntity';
 
@@ -31,7 +31,7 @@ export async function createExam(exam: Exam): Promise<any> {
   return newExam; 
 }
 
-export async function getExamsByTeacherId(id: number): Promise<any> {
+export async function getExamsByTeacherId(id: number): Promise<Exam[]> {
   const teacher = await teacherService.getById(id);
   if (!teacher) throw new InvalidTeacher();
     
@@ -39,7 +39,7 @@ export async function getExamsByTeacherId(id: number): Promise<any> {
   return result; 
 }
 
-export async function getExamsByCourseId(id: number): Promise<any> {
+export async function getExamsByCourseId(id: number): Promise<Exam[]> {
   const course = await courseService.getById(id);
   if (!course) throw new InvalidCourse();
   

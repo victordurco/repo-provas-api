@@ -3,21 +3,24 @@ import { getRepository, getManager } from 'typeorm';
 import CourseEntity from '../entities/CourseEntity';
 import { InvalidCourse } from '../errors/examErrors';
 
-export async function getById(id: number): Promise<any> {
+import { CourseAllData, CourseWithExams } from '../protocols/Course';
+
+export async function getById(id: number): Promise<CourseAllData> {
     const course = await getRepository(CourseEntity).find({ id: id });
 
     if (!course[0]) throw new InvalidCourse();
     
-    return course[0];
+    const courseFound: CourseAllData = course[0];
+    return courseFound;
 }
 
-export async function getAll(): Promise<any> {
+export async function getAll(): Promise<CourseAllData[]> {
     const courses = await getRepository(CourseEntity).find();
     
     return courses;
 }
 
-export async function getAllWithExams(): Promise<any> {
+export async function getAllWithExams(): Promise<CourseWithExams> {
  const result = getManager().query(`
     SELECT
       courses.*,

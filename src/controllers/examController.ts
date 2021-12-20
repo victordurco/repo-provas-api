@@ -4,13 +4,7 @@ import * as examService from '../services/examService';
 
 import { newExamSchema } from '../validations/ExamSchema';
 
-export interface Exam {
-    url: string;
-    name: string;
-    teacherId: number;
-    categoryId: number;
-    courseId: number;
-}
+import { Exam } from '../protocols/Exam';
 
 export async function createExam (req: Request, res: Response, next: NextFunction): Promise<any>{
   const validation = newExamSchema.validate(req.body);
@@ -35,7 +29,7 @@ export async function getExamsByTeacherId (req: Request, res: Response, next: Ne
   if (!id || id < 1 || typeof id !== 'number') return res.sendStatus(400);
 
   try {
-    const exams = await examService.getExamsByTeacherId(id);
+    const exams: Exam[] = await examService.getExamsByTeacherId(id);
     return res.status(200).send(exams);
   } catch (error) {
     if (error.name === 'InvalidTeacher') return res.status(404).send(error.message);
@@ -49,7 +43,7 @@ export async function getExamsByCourseId (req: Request, res: Response, next: Nex
   if (!id || id < 1 || typeof id !== 'number') return res.sendStatus(400);
 
   try {
-    const exams = await examService.getExamsByTeacherId(id);
+    const exams: Exam[] = await examService.getExamsByTeacherId(id);
     return res.status(200).send(exams);
   } catch (error) {
     if (error.name === 'InvalidCourse') return res.status(404).send(error.message);

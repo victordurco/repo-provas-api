@@ -1,4 +1,4 @@
-import { Exam } from '../controllers/examController';
+import { Exam } from '../protocols/Exam';
 
 const validNewExam = () => { 
     const newExam: Exam = {
