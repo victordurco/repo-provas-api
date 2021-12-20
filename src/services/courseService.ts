@@ -10,3 +10,9 @@ export async function getById(id: number): Promise<any> {
     
     return course[0];
 }
+
+export async function getAll(): Promise<any> {
+    const courses = await getRepository(CourseEntity).find();
+    
+    return courses;
+}

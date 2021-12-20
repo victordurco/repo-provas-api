@@ -6,6 +6,7 @@ import connectDatabase from "./database";
 import serverMiddlewareError from './middlewares/serverMiddlewareErro';
 import examRouter from './routers/examRouter';
 import courseRouter from './routers/courseRouter';
+import examCategoryRouter from './routers/examCategoryRouter';
 
 export async function init () {
   await connectDatabase();
@@ -22,6 +23,8 @@ app.get("/status", (req: Request, res: Response) => {
 app.use('/exam', examRouter);
 
 app.use('/course', courseRouter);
+
+app.use('/category', examCategoryRouter);
 
 app.use(serverMiddlewareError);
 

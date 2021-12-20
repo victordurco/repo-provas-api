@@ -24,6 +24,7 @@ export async function createExam (req: Request, res: Response, next: NextFunctio
     if (error.name === "InvalidCategory") return res.status(404).send(error.message);
     if (error.name === "InvalidTeacher") return res.status(404).send(error.message);
     if (error.name === "InvalidCourse") return res.status(404).send(error.message);
+    if (error.name === "IncompatibleCourseAndTeacher") return res.status(404).send(error.message);
     next(error);
   }
 };
